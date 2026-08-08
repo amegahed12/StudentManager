@@ -15,6 +15,10 @@ A basic MVC app to show CRUD operations with EF CORE
 ```
 dotnet ef migrations add InitialCreate
 ```
+- After that update the database
+```
+dotnet ef database update
+```
 
 ## Project Structure
 
