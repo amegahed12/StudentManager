@@ -1,0 +1,41 @@
+@using System.Collections.Specialized
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+@{
+    List<Student>? students = ViewBag.Stds as List<Student>;
+}
+@* @model List<Student> *@
+
+<h1>Get All Students</h1>
+<hr />
+<a class="btn btn-primary" href="Create">Create New Student</a><br><br>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Department</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var std in students)
+    {
+        <tr>
+            <td>@std.Id</td>
+            <td>@std.Name</td>
+            <td>@std.Age</td>
+            <td>@std.Address</td>
+            <td>@std.Department?.Name</td>
+            <td>
+                <a class="btn btn-info" href="Details/@std.Id">Details</a>
+                <a class="btn btn-warning" href="Edit/@std.Id">Edit</a>
+                <a class="btn btn-danger" href="Delete/@std.Id"
+                   onclick="return confirm('Are you sure to delete: \n\n\@std.Name with ID: @std.Id?')">Delete</a>
+            </td>
+
+        </tr>
+    }
+</table>

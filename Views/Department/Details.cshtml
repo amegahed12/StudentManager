@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model Department
+<h1>Department Details</h1>
+
+<table class="table table-striped w-25">
+    <tr>
+        <td>Feild</td>
+        <td>Value</td>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>@Model.DeptId</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>No. Students</td>
+        <td>@Model.Students.Count</td>
+    </tr>
+</table>
+
+<hr>
+<br>
+
+<h2>Students In The Department</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>STD ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var std in Model.Students)
+    {
+        if (std.DeptId == Model.DeptId)
+        {
+            <tr>
+                <td>@std.Id</td>
+                <td>@std.Name</td>
+                <td>@std.Age</td>
+                <td>@std.Address</td>
+                <td>
+                    <a class="btn btn-info" href="../../Student/Details/@std.Id">Details</a>
+                    <a class="btn btn-warning" href="../../Student/Edit/@std.Id">Edit</a>
+                    <a class="btn btn-danger" href="../../Student/Delete/@std.Id"
+                       onclick="return confirm('Are you sure to delete: \n\n\@std.Name with ID: @std.Id?')">Delete</a>
+                </td>
+            </tr>
+        }
+
+    }
+</table>

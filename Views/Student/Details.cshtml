@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Details";
+}
+@model Student
+
+<h1>Studnet Details</h1>
+<hr>
+@* <a class="btn btn-primary" href="../GetAll">Back</a> <br><br> *@
+
+<table class="table table-striped">
+    <thead>
+        <th>Feild</th>
+        <th>Value</th>
+    </thead>
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>@Model.Age</td>
+    </tr>
+    <tr>
+        <td>Department</td>
+        <td>@Model.Department.Name</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Model.Address</td>
+    </tr>
+</table>

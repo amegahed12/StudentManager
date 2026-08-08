@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Edit";
+
+}
+
+@model Department
+
+<h1>Edit A Department</h1>
+<hr>
+
+<form method="post" action="Edit" class="w-25">
+    <input type="hidden" name="DeptId" value="@Model.DeptId">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input value="@Model.Name" type="text" name="Name" class="form-control" id="name"
+               placeholder="Enter Department Name" required>
+    </div>
+
+    <br>
+
+    <br>
+    <input type="submit" value="Edit" class="btn btn-primary me-4">
+    <input type="reset" value="Reset" class="btn btn-warning me-4">
+    @* <a class="btn btn-primary" href="../GetAll">Back</a> <br><br> *@
+
+
+</form>

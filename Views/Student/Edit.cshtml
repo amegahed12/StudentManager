@@ -1,0 +1,57 @@
+@using System.Collections.Specialized
+@{
+    ViewData["Title"] = "Edit";
+    var depts = ViewBag.Depts as List<Department>;
+}
+
+@model Student;
+
+<form method="post" action="Edit" class="w-25">
+    <input type="hidden" name="Id" value="@Model.Id">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input value="@Model.Name" type="text" name="Name" class="form-control" id="name" placeholder="Enter Your Name"
+               required>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input value="@Model.Age" type="number" name="Age" class="form-control" id="age" placeholder="Enter Your Age"
+               required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input value="@Model.Address" type="text" name="Address" class="form-control" id="address"
+               placeholder="Enter Your Address" required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="department">Department</label>
+        <select class="form-control" name="DeptId" id="department">
+            @foreach (var dept in depts)
+            {
+                if (Model.DeptId == dept.DeptId)
+                {
+                    <option value="@dept.DeptId" selected>@dept.Name</option>
+                }
+                else
+                {
+                    <option value="@dept.DeptId">@dept.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <br>
+    <input type="submit" value="Apply" class="btn btn-primary me-4">
+    <input type="reset" value="Reset" class="btn btn-warning me-4">
+    @* <a class="btn btn-primary" href="../GetAll">Back</a> <br><br> *@
+
+
+</form>
+
