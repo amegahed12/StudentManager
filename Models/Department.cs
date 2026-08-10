@@ -13,6 +13,8 @@ namespace StudentManager.Models
         public int DeptId { get; set; }
 
 
+
+        [Display(Name = "Department Name")]
         public required string Name { get; set; }
 
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
