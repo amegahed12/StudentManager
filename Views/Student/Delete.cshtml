@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@model Student
+
+<h1>Are you sure you want to delete @Model.Name?</h1>
+<hr />
+<table class="table table-striped w-25">
+    <thead>
+        <th>Feild</th>
+        <th>Value</th>
+    </thead>
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>@Model.Email</td>
+    </tr>
+</table>
+<br />
+<form method="post" action="Delete" class="w-25">
+    <input type="hidden" name="Id" value="@Model.Id">
+    <input type="submit" value="Delete" class="btn btn-danger me-4">
+    <a class="btn btn-primary" href="../GetAll">Back</a> <br><br>
+</form>

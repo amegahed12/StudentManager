@@ -69,11 +69,17 @@ namespace StudentManager.Controllers
         }
 
 
-
         public IActionResult Delete(int id)
         {
             var std = db.Students.Find(id);
-            db.Students.Remove(std);
+            return View(std);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(Student s)
+        {
+            db.Students.Remove(s);
             db.SaveChanges();
             return RedirectToAction("GetAll");
 
