@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Create";
-    var depts = ViewBag.Depts as List<Department>;
+    //var depts = ViewBag.Depts as List<Department>;
+    var depts = ViewData["Depts"] as List<Department>;
 }
 
 <h1>Create New Student</h1>

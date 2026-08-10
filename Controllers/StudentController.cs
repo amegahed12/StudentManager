@@ -40,7 +40,8 @@ namespace StudentManager.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Depts = db.Departments.ToList();
+            //ViewBag.Depts = db.Departments.ToList();
+            ViewData["Depts"] = db.Departments.ToList();
             return View();
         }
 
