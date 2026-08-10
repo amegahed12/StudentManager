@@ -27,9 +27,9 @@ namespace StudentManager.Controllers
         public IActionResult GetAll()
         {
             // ViewData["Stds"] = db.Students.ToList();
-            // var stds = db.Students.Include(s => s.Department).ToList();
-            ViewBag.Stds = db.Students.Include(s => s.Department).ToList();
-            return View();
+            var stds = db.Students.Include(s => s.Department).ToList();
+            // ViewBag.Stds = db.Students.Include(s => s.Department).ToList();
+            return View(stds);
 
         }
 

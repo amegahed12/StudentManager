@@ -4,9 +4,10 @@
 }
 
 @{
-    List<Student>? students = ViewBag.Stds as List<Student>;
+    @* List<Student>? students = ViewBag.Stds as List<Student>; *@
 }
-@* @model List<Student> *@
+
+@model IEnumerable<Student>
 
 <h1>Get All Students</h1>
 <hr />
@@ -14,21 +15,21 @@
 
 <table class="table table-striped">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Address</th>
-        <th>Department</th>
+        <th>@Html.DisplayNameFor(s => s.Id)</th>
+        <th>@Html.DisplayNameFor(s => s.Name)</th>
+        <th>@Html.DisplayNameFor(s => s.Age)</th>
+        <th>@Html.DisplayNameFor(s => s.Address)</th>
+        <th>@Html.DisplayNameFor(s => s.Department.Name)</th>
         <th>Actions</th>
     </tr>
-    @foreach (var std in students)
+    @foreach (var std in Model)
     {
         <tr>
-            <td>@std.Id</td>
-            <td>@std.Name</td>
-            <td>@std.Age</td>
-            <td>@std.Address</td>
-            <td>@std.Department?.Name</td>
+            <td>@Html.DisplayFor(s => std.Id)</td>
+            <td>@Html.DisplayFor(s => std.Name)</td>
+            <td>@Html.DisplayFor(s => std.Age)</td>
+            <td>@Html.DisplayFor(s => std.Address)</td>
+            <td>@Html.DisplayFor(s => std.Department.Name)</td>
             <td>
                 <a class="btn btn-info" href="Details/@std.Id">Details</a>
                 <a class="btn btn-warning" href="Edit/@std.Id">Edit</a>

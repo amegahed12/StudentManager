@@ -3,7 +3,7 @@
     ViewData["Title"] = "GetAll";
 }
 
-@model List<Department>
+@model IEnumerable<Department>
 
 <h1>Get All Departments</h1>
 <hr>
@@ -12,18 +12,19 @@
 
 <table class="table table-striped">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>No. Students</th>
+        <th>@Html.DisplayNameFor(s => s.DeptId)</th>
+        <th>@Html.DisplayNameFor(s => s.Name)</th>
+        <th>@Html.DisplayNameFor(s => s.Students.Count)</th>
         <th>Actions</th>
     </tr>
 
     @foreach (var dept in Model)
     {
         <tr>
-            <td>@dept.DeptId</td>
-            <td>@dept.Name</td>
-            <td>@dept.Students.Count</td>
+            <td>@Html.DisplayFor(s => dept.DeptId)</td>
+            <td>@Html.DisplayFor(s => dept.Name)</td>
+            <td>@Html.DisplayFor(s => dept.Students.Count)</td>
+
             <td>
                 <a class="btn btn-info" href="Details/@dept.DeptId">Details</a>
                 <a class="btn btn-warning" href="Edit/@dept.DeptId">Edit</a>
