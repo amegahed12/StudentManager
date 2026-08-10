@@ -16,6 +16,14 @@ namespace StudentManager.Models
 
         public string? Address { get; set; }
 
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+
+        [NotMapped]
+        public string ConfirmPassword { get; set; }
+
 
         [ForeignKey("Department")]
         public int DeptId { get; set; }
