@@ -12,6 +12,7 @@
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter Your Name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <br>
@@ -19,6 +20,7 @@
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter Your Email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <br>
@@ -26,6 +28,7 @@
     <div class="form-group">
         <label asp-for="Age"></label>
         <input asp-for="Age" type="number" class="form-control" id="age" placeholder="Enter Your Age" required>
+        <span asp-validation-for="Age" class="text-danger"></span>
     </div>
     <br>
 
@@ -33,6 +36,7 @@
         <label asp-for="Address"></label>
         <input asp-for="Address" type="text" class="form-control" id="address" placeholder="Enter Your Address"
                required>
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <br>
 
@@ -44,6 +48,7 @@
                 <option value="@dept.DeptId">@dept.Name</option>
             }
         </select>
+        <span asp-validation-for="DeptId" class="text-danger"></span>
     </div>
 
     <br />
@@ -52,6 +57,7 @@
         <label asp-for="Password"></label>
         <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Create Your Password"
                required>
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
     <br />
@@ -60,6 +66,7 @@
         <label asp-for="ConfirmPassword"></label>
         <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirm-password"
                placeholder="Confirm Your Password" required>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
 
     <br>
