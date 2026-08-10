@@ -29,18 +29,18 @@ namespace StudentManager.Models
 
             var stds = new List<Student>
             {
-                new Student {Id = 1,Name = "Ahmed", Age = 20, Address = "Alexandria", DeptId = 1},
-                new Student {Id = 2,Name = "Ali", Age = 24, Address = "Ismailia", DeptId = 1},
-                new Student {Id = 3,Name = "Mohamed", Age = 26, Address = "Cairo", DeptId = 1},
-                new Student {Id = 4,Name = "Salah", Age = 22, Address = "Ismailia", DeptId = 2},
-                new Student {Id = 5,Name = "Ziad", Age = 27, Address = "Sinai", DeptId = 2},
-                new Student {Id = 6,Name = "Mahmoud", Age = 29, Address = "Ismailia", DeptId = 2},
-                new Student {Id = 7,Name = "Osama", Age = 21, Address = "Sinai", DeptId = 3},
-                new Student {Id = 8,Name = "Ezz", Age = 20, Address = "Ismailia", DeptId = 3},
-                new Student {Id = 9,Name = "Mazen", Age = 24, Address = "Cairo", DeptId = 4},
-                new Student {Id = 10,Name = "Eid", Age = 24, Address = "Sinai", DeptId = 4},
-                new Student {Id = 11,Name = "Hagag", Age = 28, Address = "Ismailia", DeptId = 4},
-                new Student {Id = 12,Name = "Abdelrahman", Age = 23, Address = "Cairo", DeptId = 4}
+                new Student {Id = 1,Name = "Ahmed", Age = 20, Address = "Alexandria", DeptId = 1, Email = "ahmed@gmail.com", Password = "123456"},
+                new Student {Id = 2,Name = "Ali", Age = 24, Address = "Ismailia", DeptId = 1, Email = "ali@gmail.com", Password = "123456"},
+                new Student {Id = 3,Name = "Mohamed", Age = 26, Address = "Cairo", DeptId = 1, Email = "mohamed@gmail.com", Password = "123456"},
+                new Student {Id = 4,Name = "Salah", Age = 22, Address = "Ismailia", DeptId = 2, Email = "salah@gmail.com", Password = "123456"},
+                new Student {Id = 5,Name = "Ziad", Age = 27, Address = "Sinai", DeptId = 2, Email = "ziad@gmail.com", Password = "123456"},
+                new Student {Id = 6,Name = "Mahmoud", Age = 29, Address = "Ismailia", DeptId = 2, Email = "mahmoud@gmail.com", Password = "123456"},
+                new Student {Id = 7,Name = "Osama", Age = 21, Address = "Sinai", DeptId = 3, Email = "osama@gmail.com", Password = "123456"},
+                new Student {Id = 8,Name = "Ezz", Age = 20, Address = "Ismailia", DeptId = 3, Email = "ezz@gmail.com", Password = "123456"},
+                new Student {Id = 9,Name = "Mazen", Age = 24, Address = "Cairo", DeptId = 4, Email = "mazen@gmail.com", Password = "123456"},
+                new Student {Id = 10,Name = "Eid", Age = 24, Address = "Sinai", DeptId = 4, Email = "eid@gmail.com", Password = "123456"},
+                new Student {Id = 11,Name = "Hagag", Age = 28, Address = "Ismailia", DeptId = 4, Email = "hagag@gmail.com", Password = "123456"},
+                new Student {Id = 12,Name = "Abdelrahman", Age = 23, Address = "Cairo", DeptId = 4, Email = "abdelrahman@gmail.com", Password = "123456"},
             };
 
             modelBuilder.Entity<Department>().HasData(depts);
