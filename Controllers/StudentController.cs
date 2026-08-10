@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace StudentManager.Controllers
 {
@@ -41,7 +42,8 @@ namespace StudentManager.Controllers
         public IActionResult Create()
         {
             //ViewBag.Depts = db.Departments.ToList();
-            ViewData["Depts"] = db.Departments.ToList();
+            // ViewData["Depts"] = db.Departments.ToList();
+            ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
             return View();
         }
 
