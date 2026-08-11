@@ -16,6 +16,10 @@ namespace StudentManager.Models
 
 
         [DisplayName("Department Name")]
+        [Required(ErrorMessage = "The Department Name field is required.")]
+        [MinLength(2, ErrorMessage = "The Department Name field must be at least 2 characters long.")]
+        [MaxLength(50, ErrorMessage = "The Department Name field must be at most 50 characters long.")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]*$", ErrorMessage = "The Department Name field must contain only letters, numbers, and spaces.")]
         public required string Name { get; set; }
 
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
