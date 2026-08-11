@@ -50,9 +50,18 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Create(Student s)
         {
-            db.Students.Add(s);
-            db.SaveChanges();
-            return RedirectToAction("GetAll");
+            if (s != null && ModelState.IsValid)
+            {
+                db.Students.Add(s);
+                db.SaveChanges();
+                return RedirectToAction("GetAll");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please fill all the fields!");
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View();
+            }
         }
 
         public IActionResult Edit(int id)
