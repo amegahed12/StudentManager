@@ -36,7 +36,7 @@ namespace StudentManager.Migrations
 
                     b.HasKey("DeptId");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
 
                     b.HasData(
                         new
@@ -98,7 +98,7 @@ namespace StudentManager.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
 
                     b.HasData(
                         new

@@ -22,7 +22,7 @@ namespace StudentManager.Models
         public int Age { get; set; }
 
 
-        [StringLength(50, ErrorMessage = "The Address field must be at most 50 characters long.", MinimumLength = 5)]
+        [StringLength(50, ErrorMessage = "The Address field must be at most 50 characters long.", MinimumLength = 2)]
         public string? Address { get; set; }
 
         [DataType(DataType.EmailAddress)]
