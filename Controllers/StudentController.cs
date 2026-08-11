@@ -50,6 +50,13 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Create(Student s)
         {
+            bool emailExists = db.Students.FirstOrDefault(s => s.Email == s.Email) != null;
+            if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email already exists!");
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View();
+            }
             if (s != null && ModelState.IsValid)
             {
                 db.Students.Add(s);
