@@ -50,7 +50,7 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Create(Student s)
         {
-            bool emailExists = db.Students.FirstOrDefault(s => s.Email == s.Email) != null;
+            bool emailExists = db.Students.FirstOrDefault(std => std.Email == s.Email) != null;
             if (emailExists)
             {
                 ModelState.AddModelError("Email", "Email already exists!");
