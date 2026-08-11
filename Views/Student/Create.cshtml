@@ -55,6 +55,10 @@
         <label asp-for="Password"></label>
         <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Create Your Password"
                required>
+        <div class="form-text">
+            Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter,
+            one number, and one special character.
+        </div>
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
