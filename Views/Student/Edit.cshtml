@@ -1,55 +1,73 @@
 @using System.Collections.Specialized
 @{
     ViewData["Title"] = "Edit";
-    var depts = ViewBag.Depts as List<Department>;
+    // var depts = ViewBag.Depts as List<Department>;
+    var depts = ViewData["Depts"] as List<Department>;
+
 }
 
 @model Student;
 
-<form method="post" action="Edit" class="w-25">
-    <input type="hidden" name="Id" value="@Model.Id">
+<form asp-action="Edit" asp-controller="Student" method="post" class="w-25">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input value="@Model.Name" type="text" name="Name" class="form-control" id="name" placeholder="Enter Your Name"
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" id="name" placeholder="Enter Your Name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email" class="form-control" id="email" placeholder="Enter Your Email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input type="number" asp-for="Age" class="form-control" id="age" placeholder="Enter Your Age" required>
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input type="text" asp-for="Address" class="form-control" id="address" placeholder="Enter Your Address"
                required>
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
-
     <br>
 
     <div class="form-group">
-        <label for="age">Age:</label>
-        <input value="@Model.Age" type="number" name="Age" class="form-control" id="age" placeholder="Enter Your Age"
+        <label asp-for="DeptId"></label>
+        <select asp-for="DeptId" asp-items="ViewBag.depts" class="form-control"></select>
+        <span asp-validation-for="DeptId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input type="password" name="Password" class="form-control" id="password" placeholder="Create Your Password"
                required>
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <br>
+
+    <br />
 
     <div class="form-group">
-        <label for="address">Address:</label>
-        <input value="@Model.Address" type="text" name="Address" class="form-control" id="address"
-               placeholder="Enter Your Address" required>
-    </div>
-    <br>
-
-    <div class="form-group">
-        <label for="department">Department</label>
-        <select class="form-control" name="DeptId" id="department">
-            @foreach (var dept in depts)
-            {
-                if (Model.DeptId == dept.DeptId)
-                {
-                    <option value="@dept.DeptId" selected>@dept.Name</option>
-                }
-                else
-                {
-                    <option value="@dept.DeptId">@dept.Name</option>
-                }
-            }
-        </select>
+        <label asp-for="ConfirmPassword"></label>
+        <input type="password" asp-for="ConfirmPassword" class="form-control" id="confirm-password"
+               placeholder="Confirm Your Password" required>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
 
     <br>
-    <input type="submit" value="Apply" class="btn btn-primary me-4">
-    <input type="reset" value="Reset" class="btn btn-warning me-4">
+    <input type="submit" value="Apply" class="btn btn-primary me-4" asp-action="Edit" asp-controller="Student">
+    <a asp-action="GetAll" asp-controller="Student" class="btn btn-warning me-4">Back</a>
     @* <a class="btn btn-primary" href="../GetAll">Back</a> <br><br> *@
 
 

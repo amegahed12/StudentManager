@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace StudentManager.Controllers
 {
@@ -26,9 +27,9 @@ namespace StudentManager.Controllers
         public IActionResult GetAll()
         {
             // ViewData["Stds"] = db.Students.ToList();
-            // var stds = db.Students.Include(s => s.Department).ToList();
-            ViewBag.Stds = db.Students.Include(s => s.Department).ToList();
-            return View();
+            var stds = db.Students.Include(s => s.Department).ToList();
+            // ViewBag.Stds = db.Students.Include(s => s.Department).ToList();
+            return View(stds);
 
         }
 
@@ -40,39 +41,75 @@ namespace StudentManager.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Depts = db.Departments.ToList();
+            //ViewBag.Depts = db.Departments.ToList();
+            // ViewData["Depts"] = db.Departments.ToList();
+            ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Student s)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name", s.DeptId);
+                return View(s);
+            }
+
+            bool emailExists = db.Students.Any(std => std.Email == s.Email);
+            if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email already exists!");
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name", s.DeptId);
+                return View(s);
+            }
+
             db.Students.Add(s);
             db.SaveChanges();
             return RedirectToAction("GetAll");
         }
 
+
         public IActionResult Edit(int id)
         {
             var std = db.Students.Include(s => s.Department).FirstOrDefault(s => s.Id == id);
-            ViewBag.Depts = db.Departments.ToList();
+            ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
             return View(std);
         }
 
         [HttpPost]
         public IActionResult Edit(Student s)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View(s);
+            }
+
+            bool emailExists = db.Students.Any(std => std.Email == s.Email);
+            if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email already exists!");
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View(s);
+            }
+
             db.Students.Update(s);
             db.SaveChanges();
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAll", "Student");
         }
-
 
 
         public IActionResult Delete(int id)
         {
             var std = db.Students.Find(id);
-            db.Students.Remove(std);
+            return View(std);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(Student s)
+        {
+            db.Students.Remove(s);
             db.SaveChanges();
             return RedirectToAction("GetAll");
 

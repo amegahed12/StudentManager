@@ -3,32 +3,32 @@
     ViewData["Title"] = "GetAll";
 }
 
-@model List<Department>
+@model IEnumerable<Department>
 
 <h1>Get All Departments</h1>
 <hr>
-<a class="btn btn-primary" href="Create">Create New Department</a><br><br>
+<a class="btn btn-primary" asp-action="Create" asp-controller="Department">Create New Department</a><br><br>
 
 
 <table class="table table-striped">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>No. Students</th>
+        <th>@Html.DisplayNameFor(s => s.DeptId)</th>
+        <th>@Html.DisplayNameFor(s => s.Name)</th>
+        <th>@Html.DisplayNameFor(s => s.Students.Count)</th>
         <th>Actions</th>
     </tr>
 
     @foreach (var dept in Model)
     {
         <tr>
-            <td>@dept.DeptId</td>
-            <td>@dept.Name</td>
-            <td>@dept.Students.Count</td>
+            <td>@Html.DisplayFor(s => dept.DeptId)</td>
+            <td>@Html.DisplayFor(s => dept.Name)</td>
+            <td>@Html.DisplayFor(s => dept.Students.Count)</td>
+
             <td>
-                <a class="btn btn-info" href="Details/@dept.DeptId">Details</a>
-                <a class="btn btn-warning" href="Edit/@dept.DeptId">Edit</a>
-                <a class="btn btn-danger" href="Delete/@dept.DeptId"
-                   onclick="return confirm('Are you sure to delete: \n\n\@dept.Name with ID: @dept.DeptId?  \n\n The Department Has @dept.Students.Count Students! \n\n (Students inside the department will be deleted too!!)')">Delete</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@dept.DeptId">Details</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@dept.DeptId">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@dept.DeptId">Delete</a>
             </td>
         </tr>
     }
