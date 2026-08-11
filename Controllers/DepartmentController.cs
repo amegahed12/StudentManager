@@ -67,12 +67,17 @@ namespace StudentManager.Controllers
 
         public IActionResult Delete(int id)
         {
-            var dept = db.Departments.Find(id);
+            var dept = db.Departments.Include(d => d.Students).FirstOrDefault(d => d.DeptId == id);
+            return View(dept);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Department d)
+        {
+            var dept = db.Departments.Find(d.DeptId);
             db.Departments.Remove(dept);
             db.SaveChanges();
-
             return RedirectToAction("GetAll");
-
         }
 
 
