@@ -45,6 +45,17 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Create(Department d)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(d);
+            }
+
+            bool departmentExists = db.Departments.Any(dept => dept.Name == d.Name);
+            if (departmentExists)
+            {
+                ModelState.AddModelError("Name", "Department already exists!");
+                return View(d);
+            }
             db.Departments.Add(d);
             db.SaveChanges();
             return RedirectToAction("GetAll");
@@ -60,6 +71,18 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Edit(Department d)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(d);
+            }
+
+            bool departmentExists = db.Departments.Any(dept => dept.Name == d.Name);
+            if (departmentExists)
+            {
+                ModelState.AddModelError("Name", "Department already exists!");
+                return View(d);
+            }
+
             db.Departments.Update(d);
             db.SaveChanges();
             return RedirectToAction("GetAll");

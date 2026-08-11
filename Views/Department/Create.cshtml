@@ -1,13 +1,14 @@
 @{
     ViewData["Title"] = "Create";
 }
+@model Department
 
 <h1>Create New Department</h1>
-
-<form method="post" action="Create" class="w-25">
+<form asp-action="Create" asp-controller="Department" class="w-25">
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" name="Name" class="form-control" id="name" placeholder="Enter Department Name" required>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter Department Name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <br>

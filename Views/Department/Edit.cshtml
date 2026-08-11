@@ -8,12 +8,11 @@
 <h1>Edit A Department</h1>
 <hr>
 
-<form method="post" action="Edit" class="w-25">
-    <input type="hidden" name="DeptId" value="@Model.DeptId">
+<form asp-action="Edit" asp-controller="Department" method="post" class="w-25">
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input value="@Model.Name" type="text" name="Name" class="form-control" id="name"
-               placeholder="Enter Department Name" required>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Enter Department Name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <br>
