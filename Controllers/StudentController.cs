@@ -46,30 +46,28 @@ namespace StudentManager.Controllers
             ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Student s)
         {
-            bool emailExists = db.Students.FirstOrDefault(std => std.Email == s.Email) != null;
+            if (!ModelState.IsValid)
+            {
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name", s.DeptId);
+                return View(s);
+            }
+
+            bool emailExists = db.Students.Any(std => std.Email == s.Email);
             if (emailExists)
             {
                 ModelState.AddModelError("Email", "Email already exists!");
-                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
-                return View();
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name", s.DeptId);
+                return View(s);
             }
-            if (s != null && ModelState.IsValid)
-            {
-                db.Students.Add(s);
-                db.SaveChanges();
-                return RedirectToAction("GetAll");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Please fill all the fields!");
-                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
-                return View();
-            }
+
+            db.Students.Add(s);
+            db.SaveChanges();
+            return RedirectToAction("GetAll");
         }
+
 
         public IActionResult Edit(int id)
         {
