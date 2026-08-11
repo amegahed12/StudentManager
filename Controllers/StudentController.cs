@@ -54,7 +54,8 @@ namespace StudentManager.Controllers
             if (emailExists)
             {
                 ModelState.AddModelError("Email", "Email already exists!");
-                return Create();
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View();
             }
             if (s != null && ModelState.IsValid)
             {
@@ -65,7 +66,8 @@ namespace StudentManager.Controllers
             else
             {
                 ModelState.AddModelError("", "Please fill all the fields!");
-                return Create();
+                ViewBag.depts = new SelectList(db.Departments, "DeptId", "Name");
+                return View();
             }
         }
 

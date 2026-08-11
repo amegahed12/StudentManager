@@ -11,6 +11,10 @@ namespace StudentManager.Models
     {
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "The Name field is required.")]
+        [MinLength(3, ErrorMessage = "The Name field must be at least 3 characters long.")]
+        [MaxLength(50, ErrorMessage = "The Name field must be at most 50 characters long.")]
         public required string Name { get; set; }
         public int Age { get; set; }
 
