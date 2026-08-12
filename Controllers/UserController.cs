@@ -33,7 +33,13 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Register(User u)
         {
-            return RedirectToAction("Login");
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(u);
+                db.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            return View(u);
         }
 
 
