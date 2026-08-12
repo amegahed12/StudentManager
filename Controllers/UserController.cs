@@ -33,13 +33,21 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Register(User u)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Users.Add(u);
-                db.SaveChanges();
-                return RedirectToAction("Login");
+                return View(u);
             }
-            return View(u);
+
+            bool emailExists = db.Users.Any(usr => usr.Email == u.Email);
+            if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email already exists!");
+                return View(u);
+            }
+
+            db.Users.Add(u);
+            db.SaveChanges();
+            return RedirectToAction("Login");
         }
 
         ///
