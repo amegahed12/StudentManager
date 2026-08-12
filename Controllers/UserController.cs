@@ -42,6 +42,34 @@ namespace StudentManager.Controllers
             return View(u);
         }
 
+        ///
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(User u)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(u);
+            }
+
+            var userExist = db.Users.Find(u.Email);
+
+            if (userExist == null)
+            {
+                return RedirectToAction("Register");
+            }
+
+            return RedirectToAction("Index", "Student/GetAll");
+
+
+        }
+
+
+
 
 
 
