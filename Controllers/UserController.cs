@@ -38,6 +38,8 @@ namespace StudentManager.Controllers
                 return View(u);
             }
 
+
+            // Check if Email Exists
             bool emailExists = db.Users.Any(usr => usr.Email == u.Email);
             if (emailExists)
             {
@@ -50,7 +52,6 @@ namespace StudentManager.Controllers
             return RedirectToAction("Login");
         }
 
-        ///
         public IActionResult Login()
         {
             return View();
@@ -68,14 +69,15 @@ namespace StudentManager.Controllers
                 return View(u);
             }
 
+            // Check if Email Exists
             var userExist = db.Users.FirstOrDefault(usr => usr.Email == u.Email);
-
             if (userExist == null)
             {
                 ModelState.AddModelError("Email", "Email Does not Exist!");
                 return View(u);
             }
 
+            // Check if Password Is Correct
             if (userExist.Password != u.Password)
             {
                 ModelState.AddModelError("Password", "Password Is Incorrect!");
