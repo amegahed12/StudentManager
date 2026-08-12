@@ -51,19 +51,30 @@ namespace StudentManager.Controllers
         [HttpPost]
         public IActionResult Login(User u)
         {
+
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+
             if (!ModelState.IsValid)
             {
                 return View(u);
             }
 
-            var userExist = db.Users.Find(u.Email);
+            var userExist = db.Users.FirstOrDefault(usr => usr.Email == u.Email);
 
             if (userExist == null)
             {
-                return RedirectToAction("Register");
+                ModelState.AddModelError("Email", "Email Does not Exist!");
+                return View(u);
             }
 
-            return RedirectToAction("Index", "Student/GetAll");
+            if (userExist.Password != u.Password)
+            {
+                ModelState.AddModelError("Password", "Password Is Incorrect!");
+                return View(u);
+            }
+
+            return RedirectToAction("GetAll", "Student");
 
 
         }

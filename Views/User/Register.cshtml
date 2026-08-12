@@ -14,18 +14,21 @@
                required>
         <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
+    <br />
     <div class="form-group">
         <label asp-for="LastName"></label>
         <input asp-for="LastName" type="text" class="form-control" id="last-name" placeholder="Enter Your Last Name"
                required>
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
+    <br />
 
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter Your Email" required>
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+    <br />
 
     <div class="form-group">
         <label asp-for="Password"></label>
@@ -34,8 +37,12 @@
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
+    <br />
+
     <div class="form-group">
         <input type="submit" value="Register" class="btn btn-primary me-4">
         <input type="reset" value="Reset" class="btn btn-warning me-4">
     </div>
+    <br /><br /><br />
+    <a asp-action="Login" class="btn btn-info me-4">Go Login</a>
 </form>
