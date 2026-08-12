@@ -11,7 +11,7 @@ using StudentManager.Models;
 namespace StudentManager.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260812012402_UserTable")]
+    [Migration("20260812014633_UserTable")]
     partial class UserTable
     {
         /// <inheritdoc />
@@ -224,6 +224,39 @@ namespace StudentManager.Migrations
                             Name = "Abdelrahman",
                             Password = "123456"
                         });
+                });
+
+            modelBuilder.Entity("StudentManager.Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("StudentManager.Models.Student", b =>
