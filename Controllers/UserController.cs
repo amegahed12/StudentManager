@@ -22,6 +22,25 @@ namespace StudentManager.Controllers
             db = context;
         }
 
+        /////////////////////////////////////
+
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(User u)
+        {
+            return RedirectToAction("Login");
+        }
+
+
+
+
+        ////////////////////////////////////
+
         public IActionResult Index()
         {
             return View();
