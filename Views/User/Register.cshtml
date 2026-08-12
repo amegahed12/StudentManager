@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+@model User
+
+<h1>Register</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Register" asp-controller="User" class="w-25" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" id="first-name" placeholder="Enter Your First Name"
+               required>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" id="last-name" placeholder="Enter Your Last Name"
+               required>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter Your Email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Create Your Password"
+               required>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <input type="submit" value="Register" class="btn btn-primary me-4">
+        <input type="reset" value="Reset" class="btn btn-warning me-4">
+    </div>
+    <br /><br /><br />
+    <a asp-action="Login" class="btn btn-info me-4">Go Login</a>
+</form>
