@@ -85,7 +85,7 @@ namespace StudentManager.Controllers
                 return View(s);
             }
 
-            bool emailExists = db.Students.Any(std => std.Email == s.Email);
+            bool emailExists = db.Students.Any(std => std.Email == s.Email && std.Id != s.Id);
             if (emailExists)
             {
                 ModelState.AddModelError("Email", "Email already exists!");
